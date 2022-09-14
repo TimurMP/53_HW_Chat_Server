@@ -1,2 +1,10 @@
-package telran.chat.model;public class Message {
+package telran.chat.model;
+
+import java.time.LocalTime;
+
+public class Message {
+    String nickName;
+    LocalTime time;
+    String message;
+
 }
