@@ -1,5 +1,6 @@
 package telran.chat.server.controller;
 
+import telran.chat.model.Message;
 import telran.mediation.BlkQueue;
 import telran.mediation.IBlkQueue;
 import telran.server.chat.tasks.ChatServerReceiver;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class ChatServerAppl {
     public static void main(String[] args) {
         int port = 9000;
-        IBlkQueue<String> messageBox = new BlkQueue<>(10);
+        IBlkQueue<Message> messageBox = new BlkQueue<>(10);
 
         ChatServerSender sender = new ChatServerSender(messageBox);
         Thread senderThread = new Thread(sender);

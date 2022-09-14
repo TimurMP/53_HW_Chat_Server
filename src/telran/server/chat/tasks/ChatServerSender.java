@@ -1,5 +1,6 @@
 package telran.server.chat.tasks;
 
+import telran.chat.model.Message;
 import telran.mediation.IBlkQueue;
 
 import java.io.IOException;
@@ -10,10 +11,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class ChatServerSender implements Runnable {
-    IBlkQueue<String> messageBox;
+    IBlkQueue<Message> messageBox;
     Set<ObjectOutputStream> clients;
 
-    public ChatServerSender(IBlkQueue<String> messageBox) {
+    public ChatServerSender(IBlkQueue<Message> messageBox) {
         this.messageBox = messageBox;
         clients = new HashSet<>();
     }
@@ -27,7 +28,7 @@ public class ChatServerSender implements Runnable {
     @Override
     public void run() {
         while (true){
-            String message = messageBox.pop();
+            Message message = messageBox.pop();
             synchronized (this) {
                 Iterator<ObjectOutputStream> iterator = clients.iterator();
                 while (iterator.hasNext()){
