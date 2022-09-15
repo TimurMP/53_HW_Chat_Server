@@ -24,11 +24,14 @@ public class ChatServerReceiver implements Runnable {
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 
             while (true){
+
                 Message messageObj = (Message) ois.readObject();
 //                String message = ois.readObject().toString();
 //                messageBox.push(message);
                 System.out.println(messageObj.getMessage());
                 messageBox.push(messageObj);
+
+
 
             }
 
